@@ -1,0 +1,6 @@
+{
+  "name": "Sabaton History Tour",
+  "description": "An interactive map of 20th-century European music history exploring historical conflicts through Sabaton songs, with audio previews and detailed historical dossiers for each event.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
