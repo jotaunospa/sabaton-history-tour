@@ -350,7 +350,7 @@ export default function AudioPlayer({ song, album, autoPlay = false, theme = "da
               <div
                 className="absolute top-0 bottom-0 left-0 rounded-full transition-all duration-75"
                 style={{
-                  width: `${(currentTime / duration) * 100}%`,
+                  width: `${duration > 0 ? Math.min(100, Math.max(0, (currentTime / duration) * 100)) : 0}%`,
                   backgroundColor: isDaylight ? "#b91c1c" : "#dc2626"
                 }}
               />
