@@ -248,8 +248,19 @@ export default function MapContainer({
         </button>
       </div>
 
-      {/* Actual Map Target container */}
-      <div ref={mapContainerRef} className={`w-full h-full ${theme === "daylight" ? "bg-[#efe6ce]" : "bg-[#0a0a0b]"}`} />
+      {/* Actual Map Target container. IMPORTANT: the ref'd div's className must
+          stay a CONSTANT string. Leaflet adds its own classes (leaflet-container,
+          leaflet-touch, etc.) directly to this DOM node via classList once L.map()
+          initializes on it. If React ever re-sets this node's className (which it
+          does whenever the template literal's computed value changes between
+          renders -- e.g. on theme toggle), those Leaflet-added classes get wiped
+          out, breaking tile positioning/sizing (this caused the daylight map to
+          render invisible). The theme-dependent background now lives on a
+          wrapper div instead, so it can change freely without touching the
+          node Leaflet owns. */}
+      <div className={`w-full h-full ${theme === "daylight" ? "bg-[#efe6ce]" : "bg-[#0a0a0b]"}`}>
+        <div ref={mapContainerRef} className="w-full h-full" />
+      </div>
 
     </div>
   );
