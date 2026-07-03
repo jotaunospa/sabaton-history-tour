@@ -25,3 +25,12 @@
   background: rgba(220, 38, 38, 0.4);
 }
 
+/* Force correct raster tile sizing. Without this, a Tailwind/Leaflet CSS
+   cascade conflict collapses tile <img> width to 0px (height stays 256px),
+   making the "Documentos secretos (dia)" tile layer render invisible while
+   still loading successfully over the network. */
+.leaflet-tile-pane .leaflet-tile,
+.leaflet-tile {
+  width: 256px !important;
+  height: 256px !important;
+}
